@@ -1,0 +1,30 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+image=cv2.imread(r"C:\Users\Trisha\Downloads\images.jfif")
+if image is None:
+    print("Failed to load the image")
+    exit()
+image=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+sobel_x=np.array([[-1,0,1],[-2,0,2],[-1,0,1]])
+sobel_y=np.array([[-1,-2,-2],[0,0,0],[1,2,1]])
+gx=cv2.filter2D(image,cv2.CV_64F,sobel_x)
+gy=cv2.filter2D(image,cv2.CV_64F,sobel_y)
+gradient=np.sqrt(gx**2+gy**2)
+gradient=np.uint8(np.clip(gradient,0,255))
+threshold=100
+edges=np.where(gradient>threshold,255,0)
+plt.subplot(1,3,1)
+plt.imshow(image,cmap='gray')
+plt.title("Original Image")
+plt.axis("off")
+plt.subplot(1,3,2)
+plt.imshow(gradient,cmap='gray')
+plt.title("Gradient image")
+plt.axis("off")
+plt.subplot(1,3,3)
+plt.imshow(edges,cmap='gray')
+plt.title("Edge detected")
+plt.axis("off")
+plt.tight_layout()
+plt.show()
