@@ -17,7 +17,7 @@ for r in range(256):
         mapping[r]=((s2-s1)/(r2-r1))*(r-r1)+s1
     else:
         mapping[r]=((255-s2)/(255-r2))*(r-r2)+s2
-piecewise=mapping[image]
+piecewise=mapping[image] # type: ignore
 
 plt.subplot(1,2,1)
 plt.imshow(piecewise,cmap='gray')
