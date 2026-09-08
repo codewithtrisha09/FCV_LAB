@@ -9,7 +9,7 @@ r1=90
 r2=180
 s1=0
 s2=255
-mapping=np.zeros(256,dtype=uint8)
+mapping=np.zeros(256,dtype=np.uint8)
 for r in range(256):
     if r<=r1:
         mapping[r]=((s1/r1)*r)
