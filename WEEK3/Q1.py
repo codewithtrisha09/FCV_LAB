@@ -3,10 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 image=cv2.imread(r"C:\Users\Trisha\Downloads\images.jfif")
-image=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+
 if image is None:
     print("Failed to load the image")
     exit()
+image=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
 blur=cv2.GaussianBlur(image,(5,5),0)
 mask=cv2.subtract(image,blur)
 sharp=cv2.add(image,mask)
